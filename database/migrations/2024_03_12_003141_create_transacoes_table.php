@@ -13,7 +13,19 @@ return new class extends Migration
     {
         Schema::create('transacoes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('livro_id');
+            $table->unsignedBigInteger('proprietario_id');
+            $table->unsignedBigInteger('solicitante_id');
+            $table->text('observacao');
+            $table->integer('avaliacao');
+            $table->date('data_cancelado');
+            $table->date('data_emprestado');
+            $table->date('data_devolvido');
             $table->timestamps();
+
+            $table->foreign('livro_id')->references('id')->on('livros');
+            $table->foreign('proprietario_id')->references('id')->on('users');
+            $table->foreign('solicitante_id')->references('id')->on('users');
         });
     }
 
