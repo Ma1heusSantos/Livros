@@ -9,24 +9,33 @@
                     href="{{ route('livros.adicionar') }}">Adicionar Livros</a></button>
         </div>
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex">
-                <div>
-                    <a href="#">
-                        <img class="rounded-t-lg max-w-sm" src="{{ asset('img/imageLivros/' . $livro->image) }}"
-                            alt="Harry Potter" />
-                    </a>
-                </div>
-                <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                    <span class="text-lg font-semibold">Título: {{ $livro->titulo }}</span>
-                    <span class="text-gray-600">Autor: {{ $livro->autor }}</span> <br>
-                    <span class="text-gray-600">Descrição: {{ $livro->descricao }}</span> <br>
-                    <span class="text-gray-600">Estado de conservação: {{ $livro->estado_de_conservacao }}</span> <br>
-                    <span class="text-gray-600">Gênero: {{ $livro->genero }}</span>
+    <section class="text-gray-700 body-font overflow-hidden bg-white">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="lg:w-4/5 mx-auto flex flex-wrap">
+                <img class="lg:w-1/2 w-full object-cover object-center"
+                    src="{{ asset('img/imageLivros/' . $livro->image) }}" alt="{{ $livro->titulo }}" />
+                <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                    <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ $livro->autor }}</h2>
+                    <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $livro->titulo }}</h1>
+                    <div class="flex mb-4">
+                    </div>
+                    <p class="leading-relaxed">{{ $livro->descricao }}</p>
+
+                    <div class="flex flex-col">
+                        <div class="flex text-center items-center">
+                            <span class="mr-2 title-font font-medium text-lg text-gray-900">
+                                Genero:
+                            </span>{{ $livro->genero }}
+                        </div>
+                        <div class="flex text-center items-center">
+                            <span class="mr-2 title-font font-medium text-lg text-gray-900">
+                                Estado de conservação :
+                            </span>{{ $livro->estado_de_conservacao }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
 </x-app-layout>
