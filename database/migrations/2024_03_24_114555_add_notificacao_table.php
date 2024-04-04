@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('solicitante_id');
             $table->unsignedBigInteger('livro_id');
             $table->enum('status',['Lida','naoLida']);
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('solicitante_id')->references('id')->on('users');

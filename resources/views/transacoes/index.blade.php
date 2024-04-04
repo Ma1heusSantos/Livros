@@ -32,7 +32,7 @@
                                         Nome do livro
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        observação
+                                        Status
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Aceitar
@@ -54,14 +54,33 @@
                                             {{ $transacao->livro->titulo }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ $transacao->status }}
+                                            @if ($transacao->status == 'Aprovada')
+                                                <span class="font-medium text-green-600">
+                                                    {{ $transacao->status }}</span>
+                                            @elseif ($transacao->status == 'Negada')
+                                                <span class="font-medium text-red-600"> {{ $transacao->status }}</span>
+                                            @else
+                                                <span class="font-medium text-yellow-600">
+                                                    {{ $transacao->status }}</span>
+                                            @endif
                                         </td>
-                                        <td class="px-6 py-4">
-                                            <a href="#" class="font-medium text-green-600 ">Aceitar</a>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <a href="#" class="font-medium text-red-600">Recusar</a>
-                                        </td>
+                                        @if ($transacao->status == 'Pendente')
+                                            <td class="px-6 py-4">
+                                                <a href="{{ route('aceitar.transacao', $transacao->id) }}"
+                                                    class="font-medium text-green-600 ">Aceitar</a>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <a href="{{ route('recusar.transacao', $transacao->id) }}"
+                                                    class="font-medium text-red-600">Recusar</a>
+                                            </td>
+                                        @else
+                                            <td class="px-12 py-4">
+                                                -
+                                            </td>
+                                            <td class="px-12 py-4">
+                                                -
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -13,9 +13,17 @@
                 @if (count($notificacoes) > 0)
                     @foreach ($notificacoes as $notificacao)
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('transacoes.index')">
-                                Usuário {{ $notificacao->solicitante->name }} solicita {{ $notificacao->descricao }} do
-                                livro {{ $notificacao->livro->titulo }}
+                            <x-dropdown-link :href="route('transacoes.index', $notificacao->id)" style="width:600px;">
+                                @if ($notificacao->status == 'naoLida')
+                                    <strong>
+                                        Usuário {{ $notificacao->solicitante->name }} solicita
+                                        {{ $notificacao->descricao }} do
+                                        livro {{ $notificacao->livro->titulo }}
+                                    </strong>
+                                @else
+                                    Usuário {{ $notificacao->solicitante->name }} solicita {{ $notificacao->descricao }}
+                                    do livro {{ $notificacao->livro->titulo }}
+                                @endif
                             </x-dropdown-link>
                         </x-slot>
                     @endforeach

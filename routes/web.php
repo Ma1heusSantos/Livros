@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/adicionar',[livroController::class,'store'])->name('livros.adicionar');
     Route::get('/detalhes/{id}',[livroController::class,'details'])->name('livros.details');
     Route::get('/solicitarEmprestimo/{id}',[transacoesController::class,'create'])->name('solicitar.emprestimo');
+    Route::get('/transacoes/aceitar/{id}',[transacoesController::class,'aceitarTransacao'])->name('aceitar.transacao');
+    Route::get('/transacoes/recusar/{id}',[transacoesController::class,'recusarTransacao'])->name('recusar.transacao');
 
     Route::get('/transacoes',[transacoesController::class,'index'])->name('transacoes.index');
 });

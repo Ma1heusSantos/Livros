@@ -6,10 +6,11 @@ use App\Models\Transacao;
 use App\Models\Livro;
 use App\Models\Notificacao;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class transacoesController extends Controller
 {
-    public function index(){
+    public function index($id = null){
         $user = auth()->user()->id;
         $transacoes = Transacao::where('proprietario_id', $user)->with('livro')->with('solicitante')->get();
         return view('transacoes.index',['transacoes'=>$transacoes]);
@@ -32,6 +33,21 @@ class transacoesController extends Controller
         $notificacao->livro_id = $livro->id;
         $notificacao->status = 'naoLida';
         $notificacao->save();
+
+        return redirect()->route('transacoes.index');
+    }
+    public function aceitarTransacao($id){
+        $transacao = Transacao::find($id);
+        $transacao->status = "Aprovada";
+        $transacao->data_emprestado = carbon::now();
+        $transacao->save();
+
+        return redirect()->route('transacoes.index');
+    }
+    public function recusarTransacao($id){
+        $transacao = Transacao::find($id);
+        $transacao->status = "Negada";
+        $transacao->save();
 
         return redirect()->route('transacoes.index');
     }
