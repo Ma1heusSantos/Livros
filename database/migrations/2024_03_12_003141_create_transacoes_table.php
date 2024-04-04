@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('transacoes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('livro_id');
+            $table->unsignedBigInteger('livro_id')->onDelete('cascade');
             $table->unsignedBigInteger('proprietario_id');
             $table->unsignedBigInteger('solicitante_id');
-            $table->text('observacao');
-            $table->integer('avaliacao');
-            $table->date('data_cancelado');
-            $table->date('data_emprestado');
-            $table->date('data_devolvido');
+            $table->enum('status',['Pendente','Negada','Aprovada']);
+            $table->date('data_emprestado')->nullable();
+            $table->date('data_devolvido')->nullable();
             $table->timestamps();
 
             $table->foreign('livro_id')->references('id')->on('livros');

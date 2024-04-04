@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\livroController;
+use App\Http\Controllers\transacoesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/adicionar',[livroController::class,'create']);
     Route::post('/adicionar',[livroController::class,'store'])->name('livros.adicionar');
     Route::get('/detalhes/{id}',[livroController::class,'details'])->name('livros.details');
+    Route::get('/solicitarEmprestimo/{id}',[transacoesController::class,'create'])->name('solicitar.emprestimo');
+
+    Route::get('/transacoes',[transacoesController::class,'index'])->name('transacoes.index');
 });
 
 require __DIR__.'/auth.php';
