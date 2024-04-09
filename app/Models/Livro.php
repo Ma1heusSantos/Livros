@@ -19,7 +19,7 @@ class Livro extends Model
         'user_id' ,
         'descricao',
         'genero',
-        'estado_de_consevacao' 
+        'estado_de_conservacao' 
     ];
 
     public function user(): BelongsTo

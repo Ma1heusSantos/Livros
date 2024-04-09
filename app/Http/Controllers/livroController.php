@@ -30,7 +30,7 @@ class livroController extends Controller
             'descricao' => $request->descricao,
             'user_id' => $user,
             'genero' => $request->genero,
-            'estado_de_conservacao' => $request->estado_de_conservacao,
+            'estado_de_conservacao' => $request->estado_de_conservacao
         ]);
        
         //tratamento da imagem:

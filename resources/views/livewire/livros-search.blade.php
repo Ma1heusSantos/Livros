@@ -26,36 +26,43 @@
             <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
         </a>
         <div class="flex p-6 flex-row">
-            @foreach ($livros as $livro)
-                <div class="flex mx-4">
-                    <div class="rounded overflow-hidden shadow-lg flex flex-col">
-                        <a href="#"></a>
-                        <div class="relative"><a href="#">
-                                <img class="rounded-t-lg w-full" src="{{ asset('img/imageLivros/' . $livro->image) }}"
-                                    alt="{{ $livro->titulo }}" />
-                                <div
-                                    class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="px-6 py-4 mb-auto">
-                            <a href="#"
-                                class="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">{{ $livro->titulo }}</a>
-                            <p class="text-gray-500 text-sm">
-                                {{ $livro->descricao }}
-                            </p>
-                        </div>
-                        <div class="px-6 py-3 flex flex-row items-center justify-between bg-gray-100">
-                            <a href="{{ route('livros.details', $livro->id) }}"
-                                class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center hover:text-blue-700">
-                                <i class="fa-solid fa-circle-info fa-sm"></i>
-                                <span class="ml-1 text-lg">Detalhes</span>
-                            </a>
-                        </div>
-
-                    </div>
+            @if (count($livros) == 0)
+                <div class="mx-auto flex flex-col items-center text-lg text-gray-500">Não foi encontrado nenhum livro
+                    correspondente
                 </div>
-            @endforeach
+            @else
+                @foreach ($livros as $livro)
+                    <div class="flex mx-4">
+                        <div class="rounded overflow-hidden shadow-lg flex flex-col">
+                            <a href="#"></a>
+                            <div class="relative"><a href="#">
+                                    <img class="rounded-t-lg w-full"
+                                        src="{{ asset('img/imageLivros/' . $livro->image) }}"
+                                        alt="{{ $livro->titulo }}" />
+                                    <div
+                                        class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="px-6 py-4 mb-auto">
+                                <a href="#"
+                                    class="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">{{ $livro->titulo }}</a>
+                                <p class="text-gray-500 text-sm">
+                                    {{ $livro->descricao }}
+                                </p>
+                            </div>
+                            <div class="px-6 py-3 flex flex-row items-center justify-between bg-gray-100">
+                                <a href="{{ route('livros.details', $livro->id) }}"
+                                    class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center hover:text-blue-700">
+                                    <i class="fa-solid fa-circle-info fa-sm"></i>
+                                    <span class="ml-1 text-lg">Detalhes</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
+
     </div>
 </div>
